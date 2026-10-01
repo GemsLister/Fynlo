@@ -4,11 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const pool = new Pool({
-  // host: process.env.DB_HOST,
-  // port: Number(process.env.DB_PORT),
-  // user: process.env.DB_USER,
-  // password: process.env.DB_PASSWORD,
-  // database: process.env.DB_NAME,
   connectionString: process.env.DATABASE_URL,
 });
 
@@ -16,6 +11,6 @@ pool.on("connect", () => {
   console.log("Connected to Postgres");
 });
 
-pool.on("error", () => {
-  console.log("Error connecting to Postgres");
+pool.on("error", (error) => {
+  console.error("Error connecting to Postgres:", error);
 });
