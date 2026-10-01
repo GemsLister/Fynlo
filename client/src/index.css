@@ -1,5 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
+
+button {
+  cursor: pointer;
+}
+
 @theme {
-  --font-dm-sans: 'DM Sans', sans-serif;
+  --color-background: #0e1015;
+  --color-surface: #161a22;
+  --color-card: #1c2130;
+  --color-border: #252d3d;
+  --color-muted: #2e3a4e;
+  --color-text-primary: #e8ecf4;
+  --color-text-secondary: #7a8ba8;
+  --color-text-dim: #4a5568;
+  --color-income: #34d399;
+  --color-income-muted: #0d2e23;
+  --color-expense: #fb923c;
+  --color-expense-muted: #2d1a0a;
+  --color-accent: #6366f1;
+  --color-accent-muted: #1e1f3b;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
