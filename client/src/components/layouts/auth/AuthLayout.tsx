@@ -15,7 +15,6 @@ export const AuthLayout = ({ heading, subheading, children }: Props) => {
         </p>
       </div>
       {children}
-      <PrimaryButton className="mt-6">Sign In</PrimaryButton>
     </div>
   );
 };
