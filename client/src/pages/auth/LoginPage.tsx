@@ -2,8 +2,10 @@ import { AuthForm } from "../../components/forms/AuthForm";
 import { AuthInputs } from "../../components/inputs/AuthInputs";
 import { AuthLayout } from "../../components/layouts/auth/AuthLayout";
 import fynloLogo from "../../assets/fynlo-logo.png";
+import { useLogin } from "../../hooks/auth";
 
 export const LoginPage = () => {
+  const { setEmail, setPassword, handleLogin } = useLogin();
   return (
     <div className="flex justify-center bg-background h-screen">
       <div className="flex flex-col justify-center items-center">
@@ -16,25 +18,25 @@ export const LoginPage = () => {
           heading="Welcome back!"
           subheading="Sign in to your budget dashboard"
         >
-          <AuthForm>
+          <AuthForm type="submit" onSubmit={handleLogin} text="Sign in">
             <AuthInputs
               type="text"
               placeholder="you@example.com"
               label="EMAIL"
-              setValue={() => {}}
+              setValue={setEmail}
             />
             <AuthInputs
               type="password"
               placeholder="********"
               label="PASSWORD"
-              setValue={() => {}}
+              setValue={setPassword}
             />
           </AuthForm>
         </AuthLayout>
         <span className="flex text-text-primary font-sans text-sm mt-5">
           <p className="text-text-secondary mr-1">Don't have and account?</p>
           <a href="/register" className="text-accent">
-            Sign In
+            Create account
           </a>
         </span>
       </div>
