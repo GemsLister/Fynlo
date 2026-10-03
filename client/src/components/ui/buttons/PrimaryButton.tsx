@@ -14,7 +14,7 @@ export const PrimaryButton = ({
   return (
     <button
       type={type}
-      className={`bg-accent font-sans font-medium text-text-primary w-full rounded-lg p-2 hover:bg-accent-hover transition-all duration-200 ${className}`}
+      className={`bg-accent font-sans font-medium text-text-primary w-full rounded-lg p-2 hover:bg-accent-hover transition-all duration-200 hover:bg-accent-hover ${className}`}
       onClick={onClick}
     >
       {children}
