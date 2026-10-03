@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 export const useLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleLogin = async (e?: React.FormEvent) => {
     e?.preventDefault();
     try {
       const res = await api.post("/api/auth/login", { email, password });
       if (res.status === 200) {
+        setLoading(true);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         notify({
@@ -33,5 +35,5 @@ export const useLogin = () => {
     }
   };
 
-  return { setEmail, setPassword, handleLogin };
+  return { loading, setEmail, setPassword, handleLogin };
 };
