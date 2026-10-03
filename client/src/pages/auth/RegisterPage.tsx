@@ -3,6 +3,7 @@ import { AuthInputs } from "../../components/inputs/AuthInputs";
 import { AuthLayout } from "../../components/layouts/auth/AuthLayout";
 import { useRegister } from "../../hooks/auth/useRegister";
 import fynloLogo from "../../assets/fynlo-logo.png";
+import { Link } from "react-router-dom";
 
 export const RegisterPage = () => {
   const { setUsername, setPassword, setEmail, handleRegister } = useRegister();
@@ -41,9 +42,9 @@ export const RegisterPage = () => {
         </AuthLayout>
         <span className="flex text-text-primary font-sans text-sm mt-5">
           <p className="text-text-secondary mr-1">Already have an account?</p>
-          <a href="/" className="text-accent">
+          <Link to="/" className="text-accent">
             Sign in
-          </a>
+          </Link>
         </span>
       </div>
     </div>
