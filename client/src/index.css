@@ -20,7 +20,9 @@ button {
   --color-expense: #fb923c;
   --color-expense-muted: #2d1a0a;
   --color-accent: #6366f1;
+  --color-accent-hover: #5454de;
   --color-accent-muted: #1e1f3b;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
+
