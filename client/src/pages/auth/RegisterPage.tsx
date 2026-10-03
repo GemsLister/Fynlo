@@ -18,7 +18,7 @@ export const RegisterPage = () => {
           heading="Create your account"
           subheading="Your finances, at a glance."
         >
-          <AuthForm onSubmit={handleRegister} text="Sign up">
+          <AuthForm type="submit" onSubmit={handleRegister} text="Sign up">
             <AuthInputs
               type="text"
               placeholder="Juan Dela Cruz"
