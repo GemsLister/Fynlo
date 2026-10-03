@@ -2,6 +2,7 @@ import { AuthForm } from "../../components/forms/AuthForm";
 import { AuthInputs } from "../../components/inputs/AuthInputs";
 import { AuthLayout } from "../../components/layouts/auth/AuthLayout";
 import fynloLogo from "../../assets/fynlo-logo.png";
+import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/auth";
 
 export const LoginPage = () => {
@@ -35,9 +36,9 @@ export const LoginPage = () => {
         </AuthLayout>
         <span className="flex text-text-primary font-sans text-sm mt-5">
           <p className="text-text-secondary mr-1">Don't have and account?</p>
-          <a href="/register" className="text-accent">
+          <Link to="/register" className="text-accent">
             Create account
-          </a>
+          </Link>
         </span>
       </div>
     </div>
