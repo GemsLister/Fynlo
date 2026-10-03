@@ -1,6 +1,6 @@
 import api from "../../api/axios";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import { notify } from "../../components/ui/notifications/notify";
 import { useNavigate } from "react-router-dom";
 
 export const useRegister = () => {
@@ -18,13 +18,22 @@ export const useRegister = () => {
         password,
       });
       console.log(res.data);
-      Swal.fire({ icon: "success", title: "User registered successfully" });
+      notify({
+        title: "User registered successfully",
+        text: "You can now login",
+        icon: "success",
+        confirm: true,
+        cancel: false,
+      });
       navigate("/");
     } catch (error) {
       console.error(error);
-      Swal.fire({
-        icon: "error",
+      notify({
         title: "Failed to register user",
+        text: "Please try again",
+        icon: "error",
+        confirm: true,
+        cancel: false,
       });
     }
   };
