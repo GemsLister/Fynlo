@@ -14,7 +14,7 @@ export const useLogin = () => {
       if (res.status === 200) {
         setLoading(true);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("username", res.data.user.username);
         notify({
           title: "Login success",
           text: "You have been logged in successfully",
