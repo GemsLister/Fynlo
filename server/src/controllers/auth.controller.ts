@@ -15,7 +15,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await createUser(username, email, hashedPassword);
-    res.status(201).json(user);
+    res.status(200).json(user);
   } catch (error) {
     console.error(error);
   }
@@ -37,7 +37,7 @@ export const loginUser = async (req: Request, res: Response) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
       expiresIn: "1h",
     });
-    res.json({
+    res.status(200).json({
       token,
       user: {
         id: user.id,
