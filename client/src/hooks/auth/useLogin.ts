@@ -21,6 +21,7 @@ export const useLogin = () => {
           icon: "success",
           confirm: true,
           cancel: false,
+          confirmButtonText: "OK",
         });
         navigate("/home");
       }
