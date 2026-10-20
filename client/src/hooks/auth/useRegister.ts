@@ -24,6 +24,7 @@ export const useRegister = () => {
         icon: "success",
         confirm: true,
         cancel: false,
+        confirmButtonText: "OK",
       });
       navigate("/");
     } catch (error) {
