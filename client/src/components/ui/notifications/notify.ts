@@ -6,6 +6,8 @@ interface NotificationProps {
   icon: "success" | "error" | "warning" | "info" | "question";
   confirm: boolean;
   cancel: boolean;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
 }
 
 export const notify = ({
@@ -14,6 +16,8 @@ export const notify = ({
   icon,
   confirm,
   cancel,
+  confirmButtonText,
+  cancelButtonText,
 }: NotificationProps) => {
   Swal.fire({
     icon: icon,
@@ -25,5 +29,7 @@ export const notify = ({
     iconColor: "var(--color-accent)",
     showConfirmButton: confirm,
     showCancelButton: cancel,
+    confirmButtonText: confirmButtonText,
+    cancelButtonText: cancelButtonText,
   });
 };
