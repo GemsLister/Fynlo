@@ -12,9 +12,9 @@ export const useAddTransaction = () => {
     e?.preventDefault();
     try {
       setIsClicked(true);
-      const res = await api.post("/api/add-transaction", {
+      const res = await api.post("/api/transaction/add-transaction", {
         name,
-        amount,
+        amount: Number(amount),
         category,
         date,
       });
@@ -42,9 +42,13 @@ export const useAddTransaction = () => {
     }
   };
   return {
+    name,
     setName,
+    amount,
     setAmount,
+    category,
     setCategory,
+    date,
     setDate,
     isClicked,
     handleAddTransaction,
