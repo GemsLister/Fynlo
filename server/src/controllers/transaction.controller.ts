@@ -5,7 +5,7 @@ export const addTransaction = async (req: Request, res: Response) => {
   try {
     const { name, amount, category, date } = req.body;
     if (!name || !amount || !category || !date) {
-      res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({ message: "All fields are required" });
     }
     const transaction = await createTransaction(name, amount, category, date);
     res.status(201).json({ transaction });
