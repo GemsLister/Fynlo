@@ -12,7 +12,11 @@ export const AuthForm = ({
   onSubmit,
 }: Props) => {
   return (
-    <form action="" className="flex flex-col gap-3 w-full" onSubmit={onSubmit}>
+    <form
+      action=""
+      className="flex flex-col gap-3 w-full bg-card"
+      onSubmit={onSubmit}
+    >
       {children}
       <PrimaryButton type={type} className="mt-6">
         {text}
