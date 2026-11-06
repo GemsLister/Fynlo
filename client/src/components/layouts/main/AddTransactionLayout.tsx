@@ -5,12 +5,14 @@ type Props = {
   children: React.ReactNode;
   onClose?: () => void;
   onSubmit?: () => void;
+  loading?: boolean;
 };
 
 export const AddTransactionLayout = ({
   children,
   onClose,
   onSubmit,
+  loading = false,
 }: Props) => {
   return (
     <div
@@ -35,8 +37,8 @@ export const AddTransactionLayout = ({
           </button>
         </div>
         {children}
-        <PrimaryButton type="submit" className="mt-6">
-          Add Transaction
+        <PrimaryButton type="submit" className="mt-6" disabled={loading}>
+          {loading ? "Adding..." : "Add Transaction"}
         </PrimaryButton>
       </form>
     </div>
