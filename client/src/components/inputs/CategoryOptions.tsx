@@ -13,35 +13,37 @@ export const CategoryOptions = ({
 }: CategoryType) => {
   const categoryOptions = {
     expense: [
-      { value: "housing", label: "Housing" },
-      { value: "food", label: "Food" },
-      { value: "transportation", label: "Transportation" },
-      { value: "utilities", label: "Utilities" },
-      { value: "entertainment", label: "Entertainment" },
-      { value: "health", label: "Health" },
+      { value: "Housing", label: "Housing" },
+      { value: "Food", label: "Food" },
+      { value: "Utilities", label: "Utilities" },
+      { value: "Transport", label: "Transport" },
+      { value: "Entertainment", label: "Entertainment" },
+      { value: "Health", label: "Health" },
     ],
     income: [
-      { value: "salary", label: "Salary" },
-      { value: "freelance", label: "Freelance" },
-      { value: "investment", label: "Investment" },
-      { value: "gift", label: "Gift" },
-      { value: "other", label: "Other" },
+      { value: "Income", label: "Income" },
+      { value: "Salary", label: "Salary" },
+      { value: "Freelance", label: "Freelance" },
+      { value: "Dividend", label: "Dividend" },
+      { value: "Investment", label: "Investment" },
+      { value: "Other", label: "Other" },
     ],
   };
+
   return (
-    <div className="flex flex-col">
-      <label htmlFor={id} className="text-text-secondary">
+    <div className="flex flex-col gap-1">
+      <label htmlFor={id} className="text-text-secondary text-sm font-medium">
         Category
       </label>
       <select
         name={id}
         id={id}
-        className="border border-neutral-300 rounded-xl p-2 mt-2 bg-surface text-white"
+        className="border border-border rounded-xl p-2.5 bg-surface text-text-primary focus:outline-none focus:border-accent text-sm"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
         {categoryOptions[category].map((option, index) => (
-          <option key={index} value={option.value}>
+          <option key={index} value={option.value} className="bg-surface text-text-primary">
             {option.label}
           </option>
         ))}
