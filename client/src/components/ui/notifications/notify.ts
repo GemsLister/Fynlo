@@ -1,6 +1,6 @@
-import Swal from "sweetalert2";
+import Swal, { type SweetAlertResult } from "sweetalert2";
 
-interface NotificationProps {
+export interface NotificationProps {
   title: string;
   text: string;
   icon: "success" | "error" | "warning" | "info" | "question";
@@ -8,6 +8,8 @@ interface NotificationProps {
   cancel: boolean;
   confirmButtonText?: string;
   cancelButtonText?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
 }
 
 export const notify = ({
@@ -18,12 +20,15 @@ export const notify = ({
   cancel,
   confirmButtonText,
   cancelButtonText,
-}: NotificationProps) => {
-  Swal.fire({
+  // timer,
+  onConfirm,
+  onCancel,
+}: NotificationProps): Promise<SweetAlertResult> => {
+  return Swal.fire({
     icon: icon,
     title: title,
     text: text,
-    timer: 2000,
+    //timer: timer !== undefined ? timer : cancel ? undefined : 2000,
     background: "#252d3d",
     color: "var(--color-text-primary)",
     iconColor: "var(--color-accent)",
@@ -31,5 +36,12 @@ export const notify = ({
     showCancelButton: cancel,
     confirmButtonText: confirmButtonText,
     cancelButtonText: cancelButtonText,
+  }).then((result) => {
+    if (result.isConfirmed && onConfirm) {
+      onConfirm();
+    } else if (result.isDismissed && onCancel) {
+      onCancel();
+    }
+    return result;
   });
 };
