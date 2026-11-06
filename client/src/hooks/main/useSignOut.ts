@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import { notify } from "../../components/ui/notifications/notify";
 
 export const useSignOut = () => {
   const navigate = useNavigate();
-  const [isClicked, setIsClicked] = useState(false);
+
   const handleSignOut = () => {
-    setIsClicked(true);
     notify({
       title: "Sign Out of Fynlo?",
       text: "Are you sure you want to sign out?",
@@ -15,9 +13,13 @@ export const useSignOut = () => {
       cancel: true,
       confirmButtonText: "Sign Out",
       cancelButtonText: "Stay signed in",
+      onConfirm: () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        navigate("/");
+      },
     });
-
-    navigate("/");
   };
-  return { handleSignOut, isClicked, setIsClicked };
+
+  return { handleSignOut };
 };
