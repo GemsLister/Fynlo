@@ -1,59 +1,56 @@
 import { AddTransactionLayout } from "../layouts/main/AddTransactionLayout";
 import { PrimaryButton } from "../ui/buttons/PrimaryButton";
 import { SecondaryButton } from "../ui/buttons/SecondaryButton";
-import { useState } from "react";
 import { CategoryOptions } from "../inputs/CategoryOptions";
 import { useAddTransaction } from "../../hooks/main/useAddTransaction";
+
 type Props = {
   onClose?: () => void;
+  onSuccess?: () => void;
 };
 
-// const inputs = [
-//   {
-//     label: "Name",
-//     placeholder: ({ type }: { type: "expense" | "income" }) =>
-//       type === "expense" ? "e.g. Grocery Store" : "e.g. Salary",
-//     type: "text",
-//   },
-//   {
-//     label: "Amount",
-//     placeholder: "e.g. $100",
-//     type: "number",
-//   },
-//   {
-//     label: "Date",
-//     placeholder: "Select a date",
-//     type: "date",
-//   },
-// ];
-
-export const AddTransactionForm = ({ onClose }: Props) => {
-  const [type, setType] = useState<"expense" | "income">("expense");
+export const AddTransactionForm = ({ onClose, onSuccess }: Props) => {
   const {
     name,
     setName,
     amount,
     setAmount,
+    type,
+    setType,
     category,
     setCategory,
     date,
     setDate,
     isClicked,
     handleAddTransaction,
-  } = useAddTransaction();
+  } = useAddTransaction(() => {
+    if (onSuccess) onSuccess();
+    if (onClose) onClose();
+  });
+
+  const handleTypeChange = (newType: "expense" | "income") => {
+    setType(newType);
+    if (newType === "expense") {
+      setCategory("housing");
+    } else {
+      setCategory("salary");
+    }
+  };
+
   const inputs = [
     {
       label: "Name",
       value: name,
       onChange: (val: string) => setName(val),
-      placeholder: type === "expense" ? "e.g. Grocery Store" : "e.g. Salary",
+      placeholder:
+        type === "expense" ? "e.g. Grocery Store" : "e.g. Salary Deposit",
       type: "text",
     },
     {
       label: "Amount",
       value: amount,
       onChange: (val: string) => setAmount(val),
-      placeholder: "e.g. $100",
+      placeholder: "e.g. 150.00",
       type: "number",
     },
     {
@@ -64,45 +61,55 @@ export const AddTransactionForm = ({ onClose }: Props) => {
       type: "date",
     },
   ];
+
   return (
-    <AddTransactionLayout onClose={onClose} onSubmit={handleAddTransaction}>
-      <div className="flex gap-1 mb-1">
+    <AddTransactionLayout
+      onClose={onClose}
+      onSubmit={handleAddTransaction}
+      loading={isClicked}
+    >
+      <div className="flex gap-2 mb-4">
         {type === "expense" ? (
-          // If it is active
-          <PrimaryButton onClick={() => setType("expense")}>
+          <PrimaryButton
+            type="button"
+            onClick={() => handleTypeChange("expense")}
+            className="!bg-accent !hover:bg-accent-hover flex-1"
+          >
             Expense
           </PrimaryButton>
         ) : (
-          // If it is inactive
           <SecondaryButton
-            onClick={() => setType("expense")}
-            className="hover:!border-accent-hover hover:text-white"
+            type="button"
+            onClick={() => handleTypeChange("expense")}
+            className="hover:!border-accent hover:!text-white flex-1"
           >
             Expense
           </SecondaryButton>
         )}
-        {/* If the button is income */}
+
         {type === "income" ? (
-          <PrimaryButton onClick={() => setType("income")}>
+          <PrimaryButton
+            type="button"
+            onClick={() => handleTypeChange("income")}
+            className="!bg-accent !hover:bg-accent-hover !text-white font-semibold flex-1"
+          >
             Income
           </PrimaryButton>
         ) : (
           <SecondaryButton
-            onClick={() => setType("income")}
-            className="hover:!border-accent-hover hover:text-white"
+            type="button"
+            onClick={() => handleTypeChange("income")}
+            className="hover:!border-accent hover:text-white flex-1"
           >
             Income
           </SecondaryButton>
         )}
       </div>
 
-      {inputs.map((input, index) => (
-        <div key={index} className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <label
-              htmlFor={`${input.label}-${index}`}
-              className="text-text-secondary"
-            >
+      <div className="flex flex-col gap-4">
+        {inputs.map((input, index) => (
+          <div key={index} className="flex flex-col gap-1">
+            <label className="text-text-secondary text-sm font-medium">
               {input.label}
             </label>
             <input
@@ -110,20 +117,24 @@ export const AddTransactionForm = ({ onClose }: Props) => {
               onChange={(e) => input.onChange(e.target.value)}
               placeholder={input.placeholder}
               type={input.type}
-              className="border border-neutral-300 rounded-xl p-2 mt-2 bg-surface text-white"
+              step={input.type === "number" ? "any" : undefined}
+              required
+              className="border border-border rounded-xl p-2.5 bg-surface text-text-primary focus:outline-none focus:border-accent text-sm"
             />
+            {/* Category selection right after Amount */}
+            {index === 1 && (
+              <div className="mt-3">
+                <CategoryOptions
+                  category={type}
+                  id="category"
+                  value={category}
+                  onChange={(val) => setCategory(val)}
+                />
+              </div>
+            )}
           </div>
-          {/* Category between Amount and Date */}
-          {index === 1 && (
-            <CategoryOptions
-              category={type}
-              id="category"
-              value={category}
-              onChange={(val) => setCategory(val)}
-            />
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </AddTransactionLayout>
   );
 };
