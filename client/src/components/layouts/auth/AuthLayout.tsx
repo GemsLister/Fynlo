@@ -1,4 +1,3 @@
-import { PrimaryButton } from "../../ui/buttons/PrimaryButton";
 type Props = {
   heading: string;
   subheading: string;
