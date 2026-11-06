@@ -1,0 +1,18 @@
+-- Up Migration
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS type VARCHAR(10) DEFAULT 'expense';
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS user_id INTEGER REFERENCES users(id) ON DELETE CASCADE;
+
+CREATE TABLE IF NOT EXISTS budgets (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    category VARCHAR(100) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Down Migration
+DROP TABLE IF EXISTS budgets;
+ALTER TABLE transactions DROP COLUMN IF EXISTS user_id;
+ALTER TABLE transactions DROP COLUMN IF EXISTS type;
+
