@@ -20,7 +20,7 @@ export const BudgetByCategory = ({
   };
 
   return (
-    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-6 flex flex-col justify-between shadow-md h-full">
+    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-md h-full min-w-0">
       <h2 className="text-text-primary text-lg font-semibold tracking-tight mb-5">
         Budget by Category
       </h2>
@@ -30,7 +30,7 @@ export const BudgetByCategory = ({
           return (
             <div key={cat.name} className="flex flex-col gap-1.5">
               {/* Row header: category name and amounts */}
-              <div className="flex justify-between items-center text-xs">
+              <div className="flex flex-wrap justify-between items-center gap-x-2 gap-y-1 text-xs">
                 <div className="flex items-center gap-2">
                   <span
                     className="w-2 h-2 rounded-full inline-block"
@@ -42,7 +42,7 @@ export const BudgetByCategory = ({
                 </div>
 
                 <div className="flex items-center gap-2 font-mono">
-                  <span className="text-text-secondary">
+                  <span className="whitespace-nowrap text-text-secondary">
                     {formatCurrency(cat.spent)}{" "}
                     <span className="text-text-dim">/</span>{" "}
                     {formatCurrency(cat.budget)}

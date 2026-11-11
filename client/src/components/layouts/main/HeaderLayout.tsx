@@ -18,14 +18,14 @@ export const HeaderLayout = ({
   const userInitial = (username || "J").charAt(0).toUpperCase();
 
   return (
-    <header className="flex justify-between items-center bg-[#0e1015]/90 border-b border-border/50 px-6 py-4 backdrop-blur-md sticky top-0 z-40">
+    <header className="sticky top-0 z-40 flex items-center justify-between gap-3 border-b border-border/50 bg-[#0e1015]/90 px-3 py-3 backdrop-blur-md sm:px-6 sm:py-4">
       {/* Brand logo & title */}
       <div className="flex items-center gap-3">
-        <img src={FynloLogo} alt="Fynlo Logo" className="rounded-full w-16" />
+        <img src={FynloLogo} alt="Fynlo Logo" className="w-12 rounded-full sm:w-16" />
       </div>
 
       {/* Right controls */}
-      <div className="flex items-center gap-4">
+      <div className="flex min-w-0 items-center gap-2 sm:gap-4">
         {/* Date display */}
         <span className="text-text-secondary font-mono text-xs hidden sm:inline-block">
           {selectedMonth}
@@ -34,16 +34,18 @@ export const HeaderLayout = ({
         {/* Add Transaction Button */}
         <button
           onClick={onOpenAddTransaction}
-          className="bg-accent hover:bg-accent-hover text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-lg flex items-center gap-1.5 shadow-md shadow-accent/20 transition-all cursor-pointer active:scale-95"
+          title="Add transaction"
+          className="flex shrink-0 items-center gap-1.5 rounded-lg bg-accent px-2.5 py-2 text-xs font-medium text-white shadow-md shadow-accent/20 transition-all hover:bg-accent-hover active:scale-95 sm:px-4 sm:text-sm"
         >
           <Plus className="w-4 h-4" />
-          <span>Add Transaction</span>
+          <span className="hidden sm:inline">Add Transaction</span>
+          <span className="sm:hidden">Add</span>
         </button>
 
         {/* User avatar circle */}
         <div
           title={username}
-          className="w-8 h-8 rounded-full bg-[#1c2130] border border-accent/40 text-[#818cf8] font-bold text-xs flex items-center justify-center font-mono select-none"
+          className="flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-full border border-accent/40 bg-[#1c2130] font-mono text-xs font-bold text-[#818cf8]"
         >
           {userInitial}
         </div>
@@ -51,7 +53,7 @@ export const HeaderLayout = ({
         {/* Sign out button */}
         <button
           onClick={handleSignOut}
-          className="text-text-secondary hover:text-text-primary text-xs sm:text-sm font-medium px-3 py-1.5 rounded-lg border border-border bg-surface/40 hover:bg-surface transition-all cursor-pointer"
+          className="shrink-0 rounded-lg border border-border bg-surface/40 px-2 py-1.5 text-xs font-medium text-text-secondary transition-all hover:bg-surface hover:text-text-primary sm:px-3 sm:text-sm"
         >
           Sign out
         </button>

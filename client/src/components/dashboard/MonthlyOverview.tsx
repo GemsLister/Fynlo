@@ -36,7 +36,7 @@ export const MonthlyOverview = ({
   };
 
   return (
-    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-6 flex flex-col justify-between shadow-md h-full">
+    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-4 sm:p-6 flex flex-col justify-between shadow-md h-full min-w-0">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -61,7 +61,7 @@ export const MonthlyOverview = ({
         </div>
 
         {/* Month Selector Pills */}
-        <div className="flex items-center gap-1 bg-background/60 p-1 rounded-xl border border-border/50 self-start sm:self-auto">
+        <div className="flex max-w-full items-center gap-1 overflow-x-auto bg-background/60 p-1 rounded-xl border border-border/50 self-start sm:self-auto">
           {data.map((item) => {
             const isSelected = selectedMonth.startsWith(item.month);
             return (
@@ -70,7 +70,7 @@ export const MonthlyOverview = ({
                 onClick={() =>
                   onSelectMonth(item.month, item.monthNum, item.year)
                 }
-                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                className={`shrink-0 px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                   isSelected
                     ? "bg-accent text-white shadow-sm"
                     : "text-text-secondary hover:text-text-primary"
@@ -84,8 +84,8 @@ export const MonthlyOverview = ({
       </div>
 
       {/* Chart Area */}
-      <div className="pt-10 pb-2">
-        <div className="flex items-end justify-around h-52 px-4 border-b border-border/40 relative">
+      <div className="overflow-x-auto pt-10 pb-2">
+        <div className="flex min-w-[36rem] items-end justify-around h-52 border-b border-border/40 px-2 relative sm:min-w-0 sm:px-4">
           {data.map((item) => {
             const isSelected = selectedMonth.startsWith(item.month);
             const isHovered = hoveredMonth === item.month;
@@ -109,7 +109,7 @@ export const MonthlyOverview = ({
             return (
               <div
                 key={`${item.month}-${item.year || ""}`}
-                className="flex flex-col items-center gap-2 group cursor-pointer relative"
+                className="flex shrink-0 flex-col items-center gap-2 group cursor-pointer relative"
                 onMouseEnter={() => setHoveredMonth(item.month)}
                 onMouseLeave={() => setHoveredMonth(null)}
                 onClick={() =>

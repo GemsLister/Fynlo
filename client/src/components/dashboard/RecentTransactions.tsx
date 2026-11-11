@@ -157,7 +157,7 @@ export const RecentTransactions = ({
   };
 
   return (
-    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-6 shadow-md">
+    <div className="bg-[#161a22] border border-border/80 rounded-2xl p-4 shadow-md sm:p-6">
       {/* Header with title and filter pills */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <h2 className="text-text-primary text-lg font-semibold tracking-tight">
@@ -186,11 +186,11 @@ export const RecentTransactions = ({
       </div>
 
       {/* Table Headers */}
-      <div className="grid grid-cols-12 gap-4 pb-3 border-b border-border/40 text-[11px] font-mono uppercase tracking-wider text-text-dim px-3">
-        <div className="col-span-6 sm:col-span-5">TRANSACTION</div>
+      <div className="grid grid-cols-12 gap-2 pb-3 border-b border-border/40 text-[10px] font-mono uppercase tracking-wider text-text-dim px-2 sm:gap-4 sm:px-3 sm:text-[11px]">
+        <div className="col-span-5 sm:col-span-5">TRANSACTION</div>
         <div className="hidden sm:block sm:col-span-3">CATEGORY</div>
         <div className="col-span-3 sm:col-span-2">DATE</div>
-        <div className="col-span-3 sm:col-span-2 text-right">AMOUNT</div>
+        <div className="col-span-4 text-right sm:col-span-2">AMOUNT</div>
       </div>
 
       {/* Transaction Rows */}
@@ -207,12 +207,12 @@ export const RecentTransactions = ({
             return (
               <div
                 key={tx.id}
-                className="grid grid-cols-12 gap-4 items-center py-3.5 px-3 hover:bg-surface/60 transition-colors rounded-xl group relative"
+                className="grid grid-cols-12 items-center gap-2 rounded-xl px-2 py-3.5 transition-colors hover:bg-surface/60 group relative sm:gap-4 sm:px-3"
               >
                 {/* TRANSACTION col */}
-                <div className="col-span-6 sm:col-span-5 flex items-center gap-3">
+                <div className="col-span-5 flex min-w-0 items-center gap-2 sm:col-span-5 sm:gap-3">
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center border shrink-0 ${iconConfig.bg}`}
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border sm:h-9 sm:w-9 ${iconConfig.bg}`}
                   >
                     {iconConfig.icon}
                   </div>
@@ -232,14 +232,14 @@ export const RecentTransactions = ({
                 </div>
 
                 {/* DATE col */}
-                <div className="col-span-3 sm:col-span-2 text-text-dim font-mono text-xs">
+                <div className="col-span-3 whitespace-nowrap font-mono text-[10px] text-text-dim sm:col-span-2 sm:text-xs">
                   {formatDate(tx.date)}
                 </div>
 
                 {/* AMOUNT col & optional delete */}
-                <div className="col-span-3 sm:col-span-2 flex items-center justify-end gap-2">
+                <div className="col-span-4 flex min-w-0 items-center justify-end gap-1 sm:col-span-2 sm:gap-2">
                   <span
-                    className={`font-mono text-sm font-semibold tracking-tight ${
+                    className={`whitespace-nowrap font-mono text-[11px] font-semibold tracking-tight sm:text-sm ${
                       isIncome ? "text-income" : "text-expense"
                     }`}
                   >
@@ -250,7 +250,7 @@ export const RecentTransactions = ({
                     <button
                       onClick={() => onDeleteTransaction(tx.id)}
                       title="Delete transaction"
-                      className="opacity-0 group-hover:opacity-100 p-1 hover:text-red-400 text-text-dim transition-all cursor-pointer ml-1"
+                      className="ml-1 shrink-0 p-1 text-text-dim transition-all hover:text-red-400 sm:opacity-0 sm:group-hover:opacity-100"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>

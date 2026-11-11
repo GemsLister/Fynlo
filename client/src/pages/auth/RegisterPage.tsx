@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 export const RegisterPage = () => {
   const { setUsername, setPassword, setEmail, handleRegister } = useRegister();
   return (
-    <div className="flex justify-center bg-background h-screen">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex min-h-screen justify-center bg-background px-4 py-8">
+      <div className="flex w-full max-w-md flex-col justify-center items-center">
         <img
-          className="mb-8 rounded-full w-23 mr-4"
+          className="mb-8 w-20 rounded-full sm:w-23"
           src={fynloLogo}
           alt="fynlo-logo"
         />
@@ -40,7 +40,7 @@ export const RegisterPage = () => {
             />
           </AuthForm>
         </AuthLayout>
-        <span className="flex text-text-primary font-sans text-sm mt-5">
+        <span className="mt-5 flex flex-wrap justify-center text-center text-text-primary font-sans text-sm">
           <p className="text-text-secondary mr-1">Already have an account?</p>
           <Link to="/" className="text-accent">
             Sign in

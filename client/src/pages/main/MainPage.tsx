@@ -224,7 +224,7 @@ export const MainPage = () => {
       <div
         className={`flex flex-col gap-1 -mt-2 ${loading ? "opacity-80" : ""}`}
       >
-        <h1 className="text-text-primary text-3xl font-bold tracking-tight">
+        <h1 className="break-words text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">
           Welcome back, {username}
         </h1>
         <p className="text-text-secondary text-sm">

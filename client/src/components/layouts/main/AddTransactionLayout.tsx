@@ -16,11 +16,11 @@ export const AddTransactionLayout = ({
 }: Props) => {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-xs"
       onClick={onClose}
     >
       <form
-        className="flex flex-col bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-2xl relative"
+        className="relative my-auto flex max-h-[calc(100dvh-2rem)] w-full max-w-md flex-col overflow-y-auto rounded-2xl border border-border bg-card p-5 shadow-2xl sm:p-6"
         onClick={(e) => e.stopPropagation()}
         onSubmit={onSubmit}
       >

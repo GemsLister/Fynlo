@@ -19,12 +19,12 @@ export const StatCards = ({ summary }: { summary: SummaryProps }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {/* 1. Net Balance */}
-      <div className="bg-[#121a1b] border border-emerald-900/40 hover:border-emerald-700/60 transition-all rounded-2xl p-5 flex flex-col justify-between shadow-lg shadow-emerald-950/20 relative overflow-hidden group">
+      <div className="bg-[#121a1b] border border-emerald-900/40 hover:border-emerald-700/60 transition-all rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-lg shadow-emerald-950/20 relative overflow-hidden group">
         <div className="flex flex-col gap-1">
           <span className="text-[11px] font-mono font-semibold tracking-wider text-text-secondary uppercase">
             NET BALANCE
           </span>
-          <span className="text-3xl font-bold font-mono text-income tracking-tight mt-1">
+          <span className="text-2xl sm:text-3xl font-bold font-mono text-income tracking-tight mt-1">
             {formatCurrency(summary.netBalance)}
           </span>
         </div>
@@ -36,12 +36,12 @@ export const StatCards = ({ summary }: { summary: SummaryProps }) => {
       </div>
 
       {/* 2. Total Income */}
-      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-5 flex flex-col justify-between shadow-md">
+      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-md">
         <div className="flex flex-col gap-1">
           <span className="text-[11px] font-mono font-semibold tracking-wider text-text-secondary uppercase">
             TOTAL INCOME
           </span>
-          <span className="text-3xl font-bold font-mono text-income tracking-tight mt-1">
+          <span className="text-2xl sm:text-3xl font-bold font-mono text-income tracking-tight mt-1">
             {formatCurrency(summary.totalIncome)}
           </span>
         </div>
@@ -54,12 +54,12 @@ export const StatCards = ({ summary }: { summary: SummaryProps }) => {
       </div>
 
       {/* 3. Total Expenses */}
-      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-5 flex flex-col justify-between shadow-md">
+      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-md">
         <div className="flex flex-col gap-1">
           <span className="text-[11px] font-mono font-semibold tracking-wider text-text-secondary uppercase">
             TOTAL EXPENSES
           </span>
-          <span className="text-3xl font-bold font-mono text-expense tracking-tight mt-1">
+          <span className="text-2xl sm:text-3xl font-bold font-mono text-expense tracking-tight mt-1">
             {formatCurrency(summary.totalExpenses)}
           </span>
         </div>
@@ -74,12 +74,12 @@ export const StatCards = ({ summary }: { summary: SummaryProps }) => {
       </div>
 
       {/* 4. Savings Rate */}
-      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-5 flex flex-col justify-between shadow-md">
+      <div className="bg-[#161a22] border border-border/80 hover:border-border transition-all rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-md">
         <div className="flex flex-col gap-1">
           <span className="text-[11px] font-mono font-semibold tracking-wider text-text-secondary uppercase">
             SAVINGS RATE
           </span>
-          <span className="text-3xl font-bold font-mono text-[#818cf8] tracking-tight mt-1">
+          <span className="text-2xl sm:text-3xl font-bold font-mono text-[#818cf8] tracking-tight mt-1">
             {summary.savingsRate}%
           </span>
         </div>
@@ -92,4 +92,3 @@ export const StatCards = ({ summary }: { summary: SummaryProps }) => {
     </div>
   );
 };
-
